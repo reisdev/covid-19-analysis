@@ -15,14 +15,25 @@ class COVID:
         self.data = pd.read_csv("https://covid.ourworldindata.org/data/ecdc/full_data.csv",
                                 delimiter=",", header=0, parse_dates=[self.DATE])
 
-    def by_location(self, argv=["World"]):
+    def by_location(self, *argv):
+        if(not argv):
+            argv = ["World"]
         return self.data.loc[self.data[self.LOCATION].isin(argv)]
 
-    def from_date(self, date):
-        parsed_date = datetime.strptime(date, "%Y-%M-%d")
-        return self.data.loc[(self.data[self.DATE] > parsed_date)]
+    def from_date(self, date, *argv):
+        if(not argv):
+            argv = ["World"]
+        parsed_date = datetime.strptime(date, "%Y-%m-%d")
+        mask = (self.data[self.DATE] >=
+                parsed_date) & self.data[self.LOCATION].isin(argv)
+        data = self.data[mask]
+        data.reset_index(inplace=True)
+        data = data.drop(["index"], axis=1)
+        if(len(argv) == 1):
+            data = data.drop(["location"], axis=1)
+        return data
 
-    def plot_deaths(self, *argv):
+    def plot_total_deaths(self, *argv):
         if(not argv):
             argv = ["World"]
         mask = (
