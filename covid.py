@@ -54,9 +54,9 @@ class COVID:
         data = self.data.loc[mask]
         data = data.pivot(index=self.DATE, columns=self.LOCATION,
                           values=self.TOTAL_CASES)
-        chart = data.plot(kind="line", title="New cases")
+        chart = data.plot(kind="line", title="Total cases")
         chart.set_xlabel("Date")
-        chart.set_ylabel("New Cases")
+        chart.set_ylabel("Total Cases")
         return chart
 
     def get_status(self, *argv):
