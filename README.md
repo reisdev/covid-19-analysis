@@ -63,7 +63,7 @@ Returns all the data for the given locations.
 ##### Arguments
 
 - date: Date in format `YYYY-MM-DD`
-- `location<n>`: Multiple locations, any of `("World","Afghanistan","Brazil",...)`
+- `location<n>`: Multiple locations, any of `("World","Afghanistan","Brazil",...)`. default: `["World"]`
 
 ##### Example
 
@@ -79,11 +79,11 @@ Plot a line chart with the total deaths with the given locations
 
 ##### Arguments 
 
-- `location<n>`: Multiple locations, any of `("World","Afghanistan","Brazil",...)`
+- `location<n>`: Multiple locations, any of `("World","Afghanistan","Brazil",...)`. default: `["World"]`
 
 ##### Example
 
-> [In: 1] dataset.plot_total_deaths("World","Italy","China")
+> [In: 1] dataset.plot_total_deaths("China","Italy","World")
 >  
 > [Out: 2]
 >
@@ -95,7 +95,7 @@ Plot a line chart with the total cases with the given locations
 
 ##### Arguments 
 
-- `location<n>`: Multiple locations, any of `("World","Afghanistan","Brazil",...)`
+- `location<n>`: Multiple locations, any of `("World","Afghanistan","Brazil",...)`. default: `["World"]`
 
 ##### Example
 
@@ -105,6 +105,23 @@ Plot a line chart with the total cases with the given locations
 >
 > ![plot_total_cases() example](https://i.imgur.com/yELygkx.png)
 
+#### `get_status(location1,location2,...)`
+
+Return a dataset containing the last info about the given locations
+
+##### Arguments 
+
+- `location<n>`: Multiple locations, any of `("World","Afghanistan","Brazil",...)`. default: `["World"]`
+
+##### Examples
+
+> [In: 1] data.get_status("China","Italy","World")
+>
+> [Out: 2]
+>
+> ![get_status() example](https://i.imgur.com/N8rFk4U.png)
+
 ## References
 
 - Data: The dataset was extracted from the [Our World In Data - Coronavirus Source Data](https://ourworldindata.org/coronavirus-source-data) website.
+  
